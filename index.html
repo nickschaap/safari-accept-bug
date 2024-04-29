@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Safari File Input Accept</title>
+    <style>
+      #selection {
+        border: 1px solid #000;
+        margin-top: 12px;
+        padding: 12px;
+      }
+
+      h4 {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h3>image/*</h3>
+      <p>Observe illustrator files are available.</p>
+      <input type="file" accept="image/*" id="images" />
+      <h3>application/vnd.adobe.illustrator, application/postscript</h3>
+      <p>
+        Observe illustrator files are filtered inside the native IOS file
+        picker.
+      </p>
+      <input
+        type="file"
+        id="illustrator"
+        accept="application/vnd.adobe.illustrator,application/postscript"
+      />
+    </form>
+
+    <div id="selection"></div>
+    <script>
+      const input1 = document.body.querySelector("#images");
+      const input2 = document.body.querySelector("#illustrator");
+      const selection = document.body.querySelector("#selection");
+      [input1, input2].forEach((input) =>
+        input.addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          selection.innerHTML = `<h4>Selection</h4> <br/> Type: ${file.type} <br/> Name: ${file.name}`;
+        })
+      );
+    </script>
+  </body>
+</html>
